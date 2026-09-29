@@ -60,3 +60,4 @@ Team Member Signatures:
 
 Syaikha Faiza Arifin
 Yuxuan Lin
+Mehal Patel

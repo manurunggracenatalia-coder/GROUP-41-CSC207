@@ -1,13 +1,96 @@
 # Team Project
+--------------------------------
+# Project Name: "Movie Search" (Temp name)
+## Team Information
+### Team Members
+- Mehal Patel 
+- Grace Manurung
+- Syaikha Faiza Arifin
+- Yuxuan Lin
+- Frank Li
+- Zhanyuan Su
+---
+## Project Description
+### Domain
+[Project description]
+---
+## User Stories
+### User Story 1:
+#### As a user of the movie finder I want to be able to search movies by their title so that I can look at its description, rating and other relevant information.  
+### User Story 2:
+#### As a user [type of user] I want to see the details regarding the searched movie so that I can [some benefit]
+### User Story 3:
+#### As a user [type of user] I want to have a watchlist so that I can [some benefit]
+### User Story 4:
+#### As a user [type of user] I want to add favourites so that I can [some benefit]
+### User Story 5:
+#### As a user [type of user] I want to see the movie posters so that I can [some benefit]
+### User Story 6:
+#### As a user [type of user] I want to see past comments or movie ratings so that I can [some benefit]
+### User Story 7:
+#### As a user [type of user] I want to filter and sort movies so that I can [some benefit]
+### User Story 8:
+#### As a user [type of user] I want to be able to log in/log out so that I can [some benefit]
 
-Please keep this up-to-date with information about your project throughout the term.
+---
+## Use Cases
+### Use Case 1
+Use Case: Search a movie 
 
-The readme should include information such as:
-- a summary of what your application is all about
-- a list of the user stories, along with who is responsible for each one
-- information about the API(s) that your project uses 
-- screenshots or animations demonstrating current functionality
+Primary actor: User entering the title and searching the movie 
 
-By keeping this README up-to-date,
-your team will find it easier to prepare for the final presentation
-at the end of the term.
+Preconditions:
+
+The user is logged in.
+The user has typed the name of the movie in the text field.
+Trigger: The user clicks the search button.
+
+
+Success outcome: The title has been found and the details regarding the movie appears.
+
+Main success scenario:
+
+The user enters the movie title.
+The system checks that the movie is present.
+The system displays the details of the movie.
+
+Extensions:
+
+2a. The movie is not found in the system.
+The system explains that the movie is not found.
+The system does not display the movie details.
+
+### Use Case 2
+### Use Case 3
+(Add additional use cases as needed.)
+---
+## Minimal Viable Product (MVP)
+| Team Member | MVP Use Case |
+|-------------|--------------|
+| Mehal Patel | Use Case #1: Search a movie|
+| Grace Manurung | Use Case |
+| Syaikha Faiza Arifin | Use Case |
+| Yuxuan Lin | Use Case |
+| Frank Li | Use Case |
+| Zhanyuan Su | Use Case |
+---
+## Entities
+### Entity 1: Movie
+### Entity 2: User 
+(Add additional entities as needed.)
+---
+## API Usage
+**API Name:**
+**Documentation:** [Link]
+**How it is used in the program:**
+---
+## Design Diagrams
+### UML Class Diagram
+### Sequence Diagrams
+---
+## How to Run
+[Instructions for running the program.]
+---
+## Notes
+[Any additional project information.]
+

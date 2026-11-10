@@ -1,6 +1,6 @@
 # Team Project
 --------------------------------
-# Project Name: "Movie Search" (Temp name)
+# Project Name: Flicksy
 ## Team Information
 ### Team Members
 - Mehal Patel 
@@ -26,7 +26,7 @@
 ### User Story 5:
 #### As a user [type of user] I want to see the movie posters so that I can [some benefit]
 ### User Story 6:
-#### As a user [type of user] I want to see past comments or movie ratings so that I can [some benefit]
+#### As a user of the movie finder I want to see past comments or movie ratings so that I can look at other's opinion about the movie and also the overall rating of a movie.
 ### User Story 7:
 #### As a user [type of user] I want to filter and sort movies so that I can [some benefit]
 ### User Story 8:
@@ -87,16 +87,29 @@ Extensions:
 2a. The movie is already in the user's watchlist.
 The system explains that the movie is already in the watchlist.
 The system does not add the movie again.
+### Use Case 6
+Use Case: Seeing past comments and movie ratings
+
+Primary actor: User clicking the movie posters and the past comments and ratings will pop up
+
+Precondition: 
+The user is logged in.
+Trigger: The user clicks on the movie poster.
+
+Extensions:
+2a. -
+
+(Add additional use cases as needed.)
 ---
 ## Minimal Viable Product (MVP)
-| Team Member | MVP Use Case                          |
-|-------------|---------------------------------------|
-| Mehal Patel | Use Case #1: Search a movie           |
-| Grace Manurung | Use Case                              |
+| Team Member | MVP Use Case |
+|-------------|--------------|
+| Mehal Patel | Use Case #1: Search a movie|
+| Grace Manurung | Use Case #6: Comments and Ratings |
 | Syaikha Faiza Arifin | Use Case #3: Add a movie to watchlist |
-| Yuxuan Lin | Use Case                              |
-| Frank Li | Use Case                              |
-| Zhanyuan Su | Use Case                              |
+| Yuxuan Lin | Use Case |
+| Frank Li | Use Case |
+| Zhanyuan Su | Use Case |
 ---
 ## Entities
 ### Entity 1: Movie

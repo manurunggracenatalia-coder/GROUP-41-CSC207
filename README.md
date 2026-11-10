@@ -11,8 +11,10 @@
 - Zhanyuan Su
 ---
 ## Project Description
+Our group is making a project where we create a movie finder application for people so that they could get an insight about a movie that they wanted to watch. It could 
+also be a platform where they could make their own list about the movies that they have already watched.
 ### Domain
-[Project description]
+entertainment
 ---
 ## User Stories
 ### User Story 1:

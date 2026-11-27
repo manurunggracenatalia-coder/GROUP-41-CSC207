@@ -8,8 +8,7 @@ import interface_adapter.ViewManagerModel;
 import javax.swing.*;
 import java.awt.*;
 
-public class LoginView extends JPanel
-        implements LoginViewModelListener {
+public class LoginView extends JPanel implements LoginViewModelListener {
 
     private final LoginViewModel loginViewModel;
     private LoginController loginController;
@@ -24,35 +23,58 @@ public class LoginView extends JPanel
         this.loginViewModel = loginViewModel;
         loginViewModel.addListener(this);
 
-        JLabel title = new JLabel("Login to Flicksy");
+        //set background
+        setBackground(new Color(240,249,250));
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
+        //title
+        JLabel title = new JLabel("Welcome To Flicksy!");
+        title.setFont(new Font("Verdana",Font.BOLD, 70));
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        //input fields
+        LabelTextPanel usernameInfo = new LabelTextPanel(
+                new JLabel("Username"), usernameField);
+
+        LabelTextPanel passwordInfo = new LabelTextPanel(
+                new JLabel("Password"), passwordField);
+
+        usernameInfo.setOpaque(false);
+        passwordInfo.setOpaque(false);
+
+        usernameInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        passwordInfo.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        usernameInfo.setMaximumSize(usernameInfo.getPreferredSize());
+        passwordInfo.setMaximumSize(passwordInfo.getPreferredSize());
+
+        //buttons
+        JPanel buttons = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 5));
+        buttons.setOpaque(false);
+        buttons.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JButton loginButton = new JButton("Login");
         JButton signupButton = new JButton("Sign Up");
 
-        JPanel form = new JPanel(new GridLayout(0, 2, 10, 10));
-
-        form.add(new JLabel("Username:"));
-        form.add(usernameField);
-
-        form.add(new JLabel("Password:"));
-        form.add(passwordField);
+        buttons.add(loginButton);
+        buttons.add(signupButton);
+        buttons.setMaximumSize(buttons.getPreferredSize());
 
         errorLabel.setForeground(Color.RED);
+        errorLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        this.setLayout(new FlowLayout());
+        //layout
+        add(Box.createVerticalGlue());
+        add(title);
+        add(Box.createRigidArea(new Dimension(0, 30)));
+        add(usernameInfo);
+        add(passwordInfo);
+        add(Box.createRigidArea(new Dimension(0, 10)));
+        add(errorLabel);
+        add(buttons);
+        add(Box.createVerticalGlue());
 
-        JPanel content = new JPanel();
-        content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
-
-        content.add(title);
-        content.add(form);
-        content.add(errorLabel);
-        content.add(loginButton);
-        content.add(signupButton);
-
-        this.add(content);
-
-        // Login
+        //login button
         loginButton.addActionListener(e -> {
             String username = usernameField.getText();
             String password = new String(passwordField.getPassword());
@@ -60,15 +82,11 @@ public class LoginView extends JPanel
             loginController.execute(username, password);
         });
 
-        // Go to Signup
+        //signup button
         signupButton.addActionListener(e -> {
             viewManagerModel.setState(SignupViewModel.VIEW_NAME);
             viewManagerModel.notifyViewChanged();
         });
-    }
-
-    public void setLoginController(LoginController loginController) {
-        this.loginController = loginController;
     }
 
     @Override
@@ -79,5 +97,8 @@ public class LoginView extends JPanel
 
         String error = state.getLoginError();
         errorLabel.setText(error == null ? " " : error);
+    }
+    public void setLoginController(LoginController controller) {
+        this.loginController = controller;
     }
 }

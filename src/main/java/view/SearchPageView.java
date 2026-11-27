@@ -31,6 +31,7 @@ public class SearchPageView extends JPanel implements ActionListener, SearchView
     private final JButton search;
     private final JButton favourites;
     private final JButton watchlist;
+    private final JButton logout;
     private SearchController searchController = null;
     private FavoriteController favouriteController = null;
     private AddToWatchlistController watchlistController = null;
@@ -66,6 +67,10 @@ public class SearchPageView extends JPanel implements ActionListener, SearchView
         watchlist = new JButton("Watchlist");
         watchlist.setFont(new Font("SansSerif", Font.PLAIN, 16));
         buttons.add(watchlist);
+
+        logout = new JButton("Log out");
+        logout.setFont(new Font("SanSerif", Font.PLAIN, 16));
+        buttons. add(logout);
 
         searchErrorField.setAlignmentX(Component.CENTER_ALIGNMENT);
         search.addActionListener(
@@ -182,5 +187,8 @@ public class SearchPageView extends JPanel implements ActionListener, SearchView
 
     public void setFavouriteController(FavoriteController favouriteController) {
         this.favouriteController = favouriteController;
+    }
+    public void onLogout(Runnable action){
+        logout.addActionListener(e -> action.run());
     }
 }

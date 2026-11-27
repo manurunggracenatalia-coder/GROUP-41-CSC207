@@ -42,6 +42,12 @@ import interface_adapter.ViewWatchlist.*;
 import user_case.AddToWatchlist.*;
 import user_case.ViewWatchlist.*;
 import view.WatchlistPageView;
+import interface_adapter.Logout.*;
+import user_case.Logout.*;
+import data_access.ReviewDataAccess;
+import interface_adapter.Reviews.*;
+import user_case.Reviews.*;
+import view.ReviewsView;
 import java.io.File;
 
 import javax.swing.*;
@@ -64,6 +70,8 @@ public class AppBuilder {
     private AddToWatchlistController addToWatchlistController;
     private ViewWatchlistController viewWatchlistController;
     private String watchlistReturnView = SearchBarViewModel.VIEW_NAME;
+    private LogoutController logoutController;
+    private ReviewsController reviewsController;
 
     //view models
     private final LoginViewModel loginViewModel = new LoginViewModel();
@@ -125,6 +133,7 @@ public class AppBuilder {
         //homepage
         SearchPageView searchView = new SearchPageView(searchViewModel);
         searchView.setSearchController(controller);
+        searchView.onLogout(() -> logoutController.execute());
         searchView.onOpenWatchlist(() -> openWatchlist(SearchBarViewModel.VIEW_NAME));
         searchView.onOpenFavorites(() -> openFavorites(SearchBarViewModel.VIEW_NAME));
         views.add(searchView, SearchBarViewModel.VIEW_NAME);
@@ -140,9 +149,11 @@ public class AppBuilder {
                         favoriteMovies.put(Integer.parseInt(movie[3]), new FavoritesPageView.MovieInfo(movie[0], movie[2]));
                     }
                     resultView = new SearchedResultsPageView(searchedViewModel, addFavorite);
+                    resultView.onLogout(()->logoutController.execute());
                     resultView.onOpenFavorites(() -> openFavorites(SearchedViewModel.VIEW_NAME));
                     resultView.setSearchController(controller);
                     resultView.setMovieDetailController(movieDetailController);
+                    resultView.setReviewsController(reviewsController);
                     resultView.setAddToWatchlistController(addToWatchlistController);
                     resultView.setUsername(loggedInViewModel.getState().getUsername());
                     resultView.onOpenWatchlist(() -> openWatchlist(SearchedViewModel.VIEW_NAME));
@@ -265,6 +276,38 @@ public class AppBuilder {
         cardLayout.show(views, WatchlistViewModel.VIEW_NAME);
     }
 
+    //create a logout
+    public AppBuilder addLogoutUseCase(){
+        LogoutPresenter presenter = new LogoutPresenter(viewManagerModel, loggedInViewModel, loginViewModel);
+        LogoutInputBoundary interactor = new LogoutInteractor(userDataAccess, presenter);
+        logoutController = new LogoutController(interactor);
+        return this;
+    }
+
+    //reviews use case
+    public AppBuilder addReviewsUseCase(){
+        ReviewsViewModel viewModel = new ReviewsViewModel();
+        ReviewPresenter presenter = new ReviewPresenter(viewModel);
+        GetMovieData api = new GetMovieData(System.getenv("TMDB_ACCESS_TOKEN"));
+        ReviewDataAccess dataAccess = new ReviewDataAccess(api);
+
+        ReviewsInputBoundary interactor = new ReviewsInteractor(dataAccess, presenter);
+        reviewsController = new ReviewsController(interactor);
+        ReviewsView reviewsView = new ReviewsView(viewModel, reviewsController);
+
+        //reviews pop up
+        JDialog popup = new JDialog();
+        popup.setTitle("Movie Reviews");
+        popup.add(reviewsView);
+
+        popup.setSize(1000,700);
+        popup.setLocationRelativeTo(null);
+
+        //show popup when reviews are updated
+        viewModel.addListener(() -> {popup.setVisible(true);
+        });
+        return this;
+    }
     //build app
     public JFrame build(){
         JFrame application = new JFrame("Flicksy Search");

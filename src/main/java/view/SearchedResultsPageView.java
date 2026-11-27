@@ -34,6 +34,7 @@ public class SearchedResultsPageView extends JPanel implements ActionListener, S
     private final JButton search;
     private final JButton favourites;
     private final JButton watchlist;
+    private final JButton logout;
 //    private final JButton home;
     private SearchController searchController = null;
     private ReviewsController reviewsController = null;
@@ -75,6 +76,10 @@ public class SearchedResultsPageView extends JPanel implements ActionListener, S
         watchlist = new JButton("Watchlist");
         watchlist.setFont(new Font("SansSerif", Font.PLAIN, 16));
         buttons.add(watchlist);
+
+        logout = new JButton("Log out");
+        logout.setFont(new Font("SanSerif", Font.PLAIN, 16));
+        buttons.add(logout);
 
 //        home = new JButton("Home");
 //        home.setFont(new Font("Serif", Font.PLAIN, 16));
@@ -362,5 +367,8 @@ public class SearchedResultsPageView extends JPanel implements ActionListener, S
 
     public void setAddToWatchlistController(AddToWatchlistController addToWatchlistController){
         this.addToWatchlistController = addToWatchlistController;
+    }
+    public void onLogout(Runnable action) {
+        logout.addActionListener(e -> action.run());
     }
 }

@@ -12,6 +12,8 @@ public class AppPreview {
             builder.addSignUpCase();
             builder.addLoginView();
             builder.addLoginUseCase();
+            builder.addLogoutUseCase();
+            builder.addReviewsUseCase();
             builder.addSearchUseCase();
             builder.addMovieDetailUseCase();
             builder.addWatchlistUseCases();
